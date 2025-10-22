@@ -2,6 +2,7 @@ import cors from "cors";
 
 const ACCEPTED_ORIGINS = [
   "http://localhost:4321",
+  "https://www.kilometrosporexplorar.es",
   "https://kilometrosporexplorar.es",
 ];
 
