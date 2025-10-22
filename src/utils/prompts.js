@@ -10,10 +10,10 @@ let CHATBOT_CONTEXT = "";
 
 try {
   CHATBOT_CONTEXT = fs.readFileSync(contextPath, "utf-8");
-  console.log("✅ Contexto del chatbot cargado correctamente");
+  console.log("Contexto del chatbot cargado correctamente");
 } catch (error) {
-  console.error("❌ Error cargando contexto:", error.message);
-  CHATBOT_CONTEXT = ""; // Fallback a contexto vacío
+  console.error("Error cargando contexto del chatbot:", error.message);
+  CHATBOT_CONTEXT = "";
 }
 
 // Crear el system prompt con el contexto

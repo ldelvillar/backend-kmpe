@@ -14,5 +14,7 @@ app.use("/contact", contactRouter);
 app.use("/chatbot", chatbotRouter);
 
 app.listen(CONFIG.PORT, () => {
-  console.log(`Server listening on port http://localhost:${CONFIG.PORT}`);
+  console.log(
+    `Servidor escuchando en el puerto http://localhost:${CONFIG.PORT}`
+  );
 });

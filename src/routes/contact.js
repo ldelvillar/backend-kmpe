@@ -17,6 +17,8 @@ contactRouter.post("/", async (req, res) => {
     return res.status(400).json({ error: "Falta algún campo obligatorio" });
   }
 
+  console.log("Datos del formulario recibidos:", formData);
+
   try {
     // Enviar ambos emails en paralelo
     const [adminEmail, userEmail] = await Promise.allSettled([
