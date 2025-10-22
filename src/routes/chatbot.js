@@ -7,6 +7,8 @@ chatbotRouter.post("/", async (req, res) => {
   try {
     const { message } = req.body;
 
+    console.log("Mensaje recibido para chatbot:", message);
+
     // Enviar mensaje al servicio de chatbot
     const result = await sendMessage(message);
 
