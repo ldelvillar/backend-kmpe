@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { sendMessage } from "../services/chatbot.js";
+import { sendMessage } from "../services/chatbot.ts";
 
 export const chatbotRouter = Router();
 

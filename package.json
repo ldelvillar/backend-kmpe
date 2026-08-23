@@ -2,13 +2,12 @@
   "name": "backend-kmpe",
   "version": "1.0.0",
   "description": "Backend service for KMPE landing page",
-  "main": "dist/index.js",
+  "main": "src/index.ts",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc && node -e \"require('node:fs').cpSync('src/data', 'dist/data', { recursive: true })\"",
     "typecheck": "tsc --noEmit",
-    "start": "node dist/index.js"
+    "start": "node --experimental-strip-types src/index.ts"
   },
   "author": "ldelvillar",
   "license": "ISC",

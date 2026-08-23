@@ -1,7 +1,7 @@
 import { Mistral } from "@mistralai/mistralai";
-import { CONFIG } from "../config/index.js";
-import { validateMessage } from "../utils/validators.js";
-import { createSystemPrompt } from "../utils/prompts.js";
+import { CONFIG } from "../config/index.ts";
+import { validateMessage } from "../utils/validators.ts";
+import { createSystemPrompt } from "../utils/prompts.ts";
 
 export type ChatbotResult =
   | { success: true; message: string }

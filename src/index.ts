@@ -1,7 +1,7 @@
 import express from "express";
-import { corsMiddleware } from "./middlewares/cors.js";
-import { chatbotRouter } from "./routes/chatbot.js";
-import { CONFIG } from "./config/index.js";
+import { corsMiddleware } from "./middlewares/cors.ts";
+import { chatbotRouter } from "./routes/chatbot.ts";
+import { CONFIG } from "./config/index.ts";
 
 const app = express();
 app.use(express.json());
