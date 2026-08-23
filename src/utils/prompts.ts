@@ -12,7 +12,10 @@ try {
   CHATBOT_CONTEXT = fs.readFileSync(contextPath, "utf-8");
   console.log("Contexto del chatbot cargado correctamente");
 } catch (error) {
-  console.error("Error cargando contexto del chatbot:", error.message);
+  console.error(
+    "Error cargando contexto del chatbot:",
+    error instanceof Error ? error.message : error
+  );
   CHATBOT_CONTEXT = "";
 }
 

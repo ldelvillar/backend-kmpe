@@ -3,17 +3,19 @@ import { CONFIG } from "../config/index.js";
 import { validateMessage } from "../utils/validators.js";
 import { createSystemPrompt } from "../utils/prompts.js";
 
+export type ChatbotResult =
+  | { success: true; message: string }
+  | { success: false; error: string };
+
+const GENERIC_ERROR = "Error procesando tu mensaje. Por favor, intenta de nuevo.";
+
 // Crear cliente Mistral una sola vez
 const mistral = new Mistral({
   apiKey: CONFIG.MISTRAL_API_KEY,
 });
 
-/**
- * Enviar un mensaje al chatbot y obtener una respuesta
- * @param {string} message - El mensaje del usuario
- * @returns {Promise<{success: boolean, message?: string, error?: string}>}
- */
-export const sendMessage = async (message) => {
+// Enviar un mensaje al chatbot y obtener una respuesta
+export const sendMessage = async (message: unknown): Promise<ChatbotResult> => {
   try {
     // Validar el mensaje
     const validation = validateMessage(message);
@@ -34,20 +36,32 @@ export const sendMessage = async (message) => {
         },
         {
           role: "user",
-          content: message.trim(),
+          content: validation.message,
         },
       ],
     });
 
+    const content = result.choices[0]?.message.content;
+    if (typeof content !== "string") {
+      console.error("Respuesta inesperada de Mistral:", content);
+      return {
+        success: false,
+        error: GENERIC_ERROR,
+      };
+    }
+
     return {
       success: true,
-      message: result.choices[0].message.content,
+      message: content,
     };
   } catch (error) {
-    console.error("Error en servicio de chatbot:", error.message);
+    console.error(
+      "Error en servicio de chatbot:",
+      error instanceof Error ? error.message : error
+    );
     return {
       success: false,
-      error: "Error procesando tu mensaje. Por favor, intenta de nuevo.",
+      error: GENERIC_ERROR,
     };
   }
 };

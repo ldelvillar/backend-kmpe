@@ -6,10 +6,12 @@ const ACCEPTED_ORIGINS = [
   "https://kilometrosporexplorar.es",
 ];
 
-export const corsMiddleware = ({ acceptedOrigins = ACCEPTED_ORIGINS } = {}) =>
+export const corsMiddleware = ({
+  acceptedOrigins = ACCEPTED_ORIGINS,
+}: { acceptedOrigins?: string[] } = {}) =>
   cors({
     origin: (origin, callback) => {
-      if (acceptedOrigins.includes(origin) || !origin) {
+      if (!origin || acceptedOrigins.includes(origin)) {
         return callback(null, true);
       }
 

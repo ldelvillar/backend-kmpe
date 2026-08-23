@@ -24,7 +24,10 @@ chatbotRouter.post("/", async (req, res) => {
       message: result.message,
     });
   } catch (error) {
-    console.error("Error en ruta de chatbot:", error.message);
+    console.error(
+      "Error en ruta de chatbot:",
+      error instanceof Error ? error.message : error
+    );
     res.status(500).json({
       success: false,
       error: "Error procesando tu mensaje. Por favor, intenta de nuevo.",

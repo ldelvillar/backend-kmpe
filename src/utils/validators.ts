@@ -1,5 +1,9 @@
+export type ValidationResult =
+  | { valid: true; message: string }
+  | { valid: false; error: string };
+
 // Validar que el mensaje sea válido
-export const validateMessage = (message) => {
+export const validateMessage = (message: unknown): ValidationResult => {
   if (!message || typeof message !== "string") {
     return { valid: false, error: "El mensaje es requerido" };
   }
@@ -16,5 +20,5 @@ export const validateMessage = (message) => {
     };
   }
 
-  return { valid: true };
+  return { valid: true, message: trimmedMessage };
 };
